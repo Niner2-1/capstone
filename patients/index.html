@@ -1,0 +1,69 @@
+<?php
+// Your database connection details
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "your_database_name";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Process the form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get input values from the form
+    $productName = $_POST["product_name"];
+    $supplierId = $_POST["supplier_id"];
+
+    // Insert the new product into the 'product' table
+    $sql = "INSERT INTO product (product_name, supplier_id) VALUES ('$productName', $supplierId)";
+    if ($conn->query($sql) === TRUE) {
+        echo "New product added successfully.";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Fetch the supplier data from the 'supplier' table
+$sql = "SELECT * FROM supplier";
+$result = $conn->query($sql);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Product</title>
+</head>
+<body>
+
+<h2>Add New Product</h2>
+<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+    <label for="product_name">Product Name:</label>
+    <input type="text" id="product_name" name="product_name" required>
+    <br>
+    <label for="supplier_id">Select Supplier:</label>
+    <select id="supplier_id" name="supplier_id" required>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row["supplier_id"] . "'>" . $row["name_of_supplier"] . "</option>";
+            }
+        }
+        ?>
+    </select>
+    <br>
+    <input type="submit" value="Add Product">
+</form>
+
+</body>
+</html>
+
+<?php
+// Close the database connection
+$conn->close();
+?>
