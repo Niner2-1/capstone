@@ -72,7 +72,7 @@ unset($pdo);
 <div class="chartbox">
   <canvas id="myChart"></canvas>
 </div>
-<canvas id="myChart" width="400" height="400"></canvas>
+
 <script>
 
 //setup block

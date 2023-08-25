@@ -3,14 +3,24 @@
 	<head>
 		<title>Health Center Patient Record Management System</title>
 		<meta charset = "utf-8" />
-		<link rel = "shortcut icon" href = "images/logo.png">
+		<link rel = "shortcut icon" href = "../images/logo.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css" />
 		<link rel = "stylesheet" type = "text/css" href = "../css/customize.css" />
+		<style>
+			body {
+			position: relative;
+			height: 100vh;
+			width: 100%;
+			background-image: url("../images/bg.jpg");
+			background-size: cover;
+			background-position: center;
+}
+		</style>
 	</head>
 <body>
 	<div class = "navbar navbar-default navtop">
-		<img src = "images/logo.png" style = "float:left;" height = "55px" /><label class = "navbar-brand">LAFUENTE MEDICAL CLINIC Patient Record Management Information System - Padre Burgos</label>
+		<img src = "../images/logo.png" style = "float:left;" height = "55px" /><label class = "navbar-brand">LAFUENTE MEDICAL CLINIC Patient Record Management Information System - Padre Burgos</label>
 	</div>
 		<div id = "sidelogin">
 			<form action = "login.php" enctype = "multipart/form-data" method = "POST" >
@@ -34,7 +44,7 @@
 				</div>
 			</form>
 		</div>	
-		<img src = "images/victorias.jpg" class = "background">			
+				
 	<div id = "footer">
 		<label class = "footer-title"></label>
 	</div>

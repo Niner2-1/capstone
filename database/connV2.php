@@ -1,6 +1,6 @@
 <?php
     $host = 'localhost';
-    $db = 'draft1';
+    $db = 'capstonedbdraft';
     $user = 'root';
     $password = '';
     function connect($host, $db, $user, $password) {

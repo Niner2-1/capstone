@@ -38,8 +38,10 @@
 			$firstname = $_POST['firstname'];
 			$middlename = $_POST['middlename'];
 			$lastname = $_POST['lastname'];
-			$section = $_POST['section'];
 			$conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
-			$conn->query("UPDATE `user` SET `username` = '$username', `password` = '$password', `firstname` = '$firstname', `middlename` = '$middlename', `lastname` = '$lastname', `section` = '$section' WHERE `user_id` = '$id'") or die(mysqli_error());
+			$conn->query("UPDATE `users	` SET `username` = '$username', `password` = '$password', `firstname` = '$firstname', `middlename` = '$middlename', `lastname` = '$lastname' WHERE `user_id` = '$id'") or die(mysqli_error());
 			echo("<script> location.replace(' user.php');</script>");
-		}	
+		}
+		
+		
+	

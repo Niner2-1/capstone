@@ -45,10 +45,12 @@
 		<div class = "panel panel-success">	
 			<div class = "panel-heading">
 			<?php
-				$q = $conn->query("SELECT * FROM `patient_record` JOIN `complaints` ON `complaints`.`itr_no` = `patient_record`.`itr_no` WHERE `patient_record`.`itr_no` = '$_GET[itr_no]'") or die(mysqli_error());
+			
+				$q = $conn->query("SELECT * FROM `patient_record` WHERE `patient_record`.`itr_no` = '$_GET[itr_no]'") or die(mysqli_error());
 				$f = $q->fetch_array();
-				$q1 = $conn->query("SELECT COUNT(*) as total FROM `complaints`  where `status` = 'Pending' && `itr_no` = '$f[itr_no]'") or die(mysqli_error());
+				$q1 = $conn ->query("SELECT COUNT(*) as total FROM `complaints`  where `status` = 'Pending' && `itr_no` = '$f[itr_no]'") or die(mysqli_error());
 				$f1 = $q1->fetch_array();
+				
 			?>
 				<label>Patient Information / <label class = "text-warning"><?php echo $f['firstname']." ".substr($f['middlename'], 0,1).". ".$f['lastname']?></label></label>
 				<a style = "float:right; margin-top:-4px;" href = "urinalysis.php" class = "btn btn-info"><span class = "glyphicon glyphicon-hand-right"></span> BACK</a>

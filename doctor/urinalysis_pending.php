@@ -55,7 +55,7 @@
 				$q = $conn->query("SELECT * FROM `complaints` WHERE  `itr_no` = '$id' ORDER BY `status` DESC") or die(mysqli_error());
 				while($f = $q->fetch_array()){
 					if($f['status'] == 'Pending'){
-						echo "<label style = 'color:#3399f3;'>".$f1['firstname']." ".$f1['lastname']."</label>"."<textarea  style = 'resize:none;' disabled = 'disabled' class = 'form-control'>".$f['remark']."</textarea>".$f['date']."<br /><a class = 'btn btn-primary' href = 'urinalysis_not.php?itr_no=".$id."&comp_id=".$f['com_id']."'><span class = 'glyphicon glyphicon-check'></span> Confirm</a><br /><br />";
+						echo "<label style = 'color:#3399f3;'>".$f1['firstname']." ".$f1['lastname']."</label>"."<textarea  style = 'resize:none;' disabled = 'disabled' class = 'form-control'>".$f['remark']."</textarea>".$f['date']."<br /><a class = 'btn btn-primary' href = 'diagnosed.php?itr_no=".$id."&comp_id=".$f['com_id']."'><span class = 'glyphicon glyphicon-check'></span> Confirm</a><br /><br />";
 					}else{
 						echo "<label style = 'color:#3399f3;'>".$f1['firstname']." ".$f1['lastname']."</label>"."<textarea  style = 'resize:none;' disabled = 'disabled' class = 'form-control'>".$f['remark']."</textarea>".$f['date']."<br /><a class = 'btn btn-primary' disabled = 'disabled'><span class = 'glyphicon glyphicon-check'></span> Done</a><br /><br />";
 					}

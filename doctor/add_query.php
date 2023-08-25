@@ -1,4 +1,34 @@
 <?php
+	if(ISSET($_POST['save_test'])){
+		$date_of_request = $_POST['date_of_request'];
+		$color = $_POST['color'];
+		$transparency = $_POST['transparency'];
+		$specific_gravity = $_POST['specific_gravity'];
+		$ph = $_POST['ph'];
+		$sugar = $_POST['sugar'];
+		$protein = $_POST['protein'];
+		$pregnacy_test = $_POST['pregnancy_test'];
+		$pus_cells = $_POST['pus_cells'];
+		$rbc = $_POST['rbc'];
+		$cast = $_POST['cast'];
+		$urates = $_POST['urates'];
+		$uric_acid = $_POST['uric_acid'];
+		$cal_ox = $_POST['cal_ox'];
+		$epith_cells = $_POST['epith_cells'];
+		$mucus_threads = $_POST['mucus_threads'];
+		$others = $_POST['others'];
+		$pathologist = $_POST['pathologist'];
+		$medical_technologist = $_POST['medical_technologist'];
+		$itr_no = $_POST['itr_no'];
+		$user_id = $_POST['user_id'];
+		$month = date("M", strtotime("+8 HOURS"));
+		$year = date("Y", strtotime("+8 HOURS"));
+		$conn = new mysqli("localhost", 'root', '', 'capstonedbdraft') or die(mysqli_error());
+		$conn->query("INSERT INTO `lab_test` VALUES('', '$date_of_request', '$color', '$transparency', '$specific_gravity', '$ph', '$sugar', '$protein', '$pregnacy_test', '$pus_cells', '$rbc', '$cast', '$urates', '$uric_acid', '$cal_ox', '$epith_cells', '$mucus_threads', '$others', '$pathologist', '$medical_technologist', '$itr_no', '$user_id', '$month', '$year')") or die(mysqli_error());
+		$conn->query("UPDATE `complaints` SET `status` = 'Done' WHERE `itr_no` = '$_GET[itr_no]' && `section` = 'Urinalysis' && `com_id` = '$_GET[comp_id]'") or die(mysqli_error());
+		echo("<script> location.replace('view_urinalysis_record.php');</script>");
+		$conn->close();
+	}
 	if(ISSET($_POST['save_d'])){
 		$tooth = $_POST['tooth'];
 		$date = date("Y-m-d", strtotime("+8 HOURS"));
@@ -76,36 +106,6 @@
 		$conn->query("INSERT INTO `hematology` VALUES('', '$date_requested', '$requested_by', '$hemoglobin', '$hematocrit', '$rbc_count', '$wbc_count', '$platelet', '$bleeding_time', '$clotting_time', '$neutrophil', '$segmenters', '$stabs', '$lymphocytes', '$monocyte', '$eosinophil', '$basophil', '$total', '$abo_group', '$rh_group', '$remarks', '$pathologist', '$medical_technologist', '$itr_no', '$user_id', '$month', '$year')") or die(mysqli_error());
 		$conn->query("UPDATE `complaints` SET `status` = 'Done' WHERE `itr_no` = '$_GET[itr_no]' && `section` = 'Hematology' && `com_id` = '$_GET[comp_id]'") or die(mysqli_error());
 		echo("<script> location.replace('view_hematology_record.php');</script>");
-		$conn->close();
-	}
-	if(ISSET($_POST['save_u'])){
-		$date_of_request = $_POST['date_of_request'];
-		$color = $_POST['color'];
-		$transparency = $_POST['transparency'];
-		$specific_gravity = $_POST['specific_gravity'];
-		$ph = $_POST['ph'];
-		$sugar = $_POST['sugar'];
-		$protein = $_POST['protein'];
-		$pregnacy_test = $_POST['pregnancy_test'];
-		$pus_cells = $_POST['pus_cells'];
-		$rbc = $_POST['rbc'];
-		$cast = $_POST['cast'];
-		$urates = $_POST['urates'];
-		$uric_acid = $_POST['uric_acid'];
-		$cal_ox = $_POST['cal_ox'];
-		$epith_cells = $_POST['epith_cells'];
-		$mucus_threads = $_POST['mucus_threads'];
-		$others = $_POST['others'];
-		$pathologist = $_POST['pathologist'];
-		$medical_technologist = $_POST['medical_technologist'];
-		$itr_no = $_POST['itr_no'];
-		$user_id = $_POST['user_id'];
-		$month = date("M", strtotime("+8 HOURS"));
-		$year = date("Y", strtotime("+8 HOURS"));
-		$conn = new mysqli("localhost", 'root', '', 'hcpms') or die(mysqli_error());
-		$conn->query("INSERT INTO `urinalysis` VALUES('', '$date_of_request', '$color', '$transparency', '$specific_gravity', '$ph', '$sugar', '$protein', '$pregnacy_test', '$pus_cells', '$rbc', '$cast', '$urates', '$uric_acid', '$cal_ox', '$epith_cells', '$mucus_threads', '$others', '$pathologist', '$medical_technologist', '$itr_no', '$user_id', '$month', '$year')") or die(mysqli_error());
-		$conn->query("UPDATE `complaints` SET `status` = 'Done' WHERE `itr_no` = '$_GET[itr_no]' && `section` = 'Urinalysis' && `com_id` = '$_GET[comp_id]'") or die(mysqli_error());
-		echo("<script> location.replace('view_urinalysis_record.php');</script>");
 		$conn->close();
 	}
 	if(ISSET($_POST['save_r'])){

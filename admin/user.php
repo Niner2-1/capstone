@@ -78,20 +78,6 @@
 							<label for = "lastname">Lastname: </label>
 							<input class = "form-control" type = "text" name = "lastname" required = "required">
 						</div>
-						<div class = "form-group">
-							<label for = "section">Section: </label>
-							<select name = "section" class = "form-control" required = "required">
-								<option value = "">--Please select an option--</option>
-								<option value = "Dental">Dental</option>
-								<option value = "Fecalysis">Fecalysis</option>
-								<option value = "Hematology">Hematology</option>
-								<option value = "Xray">Xray</option>
-								<option value = "Rehabilitation">Rehabilitation</option>
-								<option value = "Sputum">Sputum</option>
-								<option value = "Urinalysis">Urinalysis</option>
-								<option value = "Maternity">Maternity</option>
-							</select>
-						</div>
 							<button class = "btn btn-primary" name = "save_user" ><span class = "glyphicon glyphicon-save"></span> SAVE</button>
 							<br />
 					</div>	
@@ -102,7 +88,6 @@
 						$firstname = $_POST['firstname']; 
 						$middlename = $_POST['middlename']; 
 						$lastname = $_POST['lastname']; 
-						$section = $_POST['section']; 
 						$conn = new mysqli("localhost", "root", "", "capstonedbdraft");
 						$q1 = $conn->query("SELECT * FROM `users` WHERE `username` = '$username'") or die(mysqli_error());
 						$f1 = $q1->fetch_array();
@@ -110,7 +95,7 @@
 							if($c1 > 0){
 								echo "<script>alert('Username already taken')</script>";
 							}else{
-								$conn->query("INSERT INTO `user` VALUES('', '$username', '$password', '$firstname', '$middlename', '$lastname', '$section')");
+								$conn->query("INSERT INTO `users` VALUES('', '$username', '$password', '$firstname', '$middlename', '$lastname')");
 								echo("<script> location.replace(' user.php');</script>");
 							}
 					}

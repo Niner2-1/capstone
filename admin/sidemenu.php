@@ -6,7 +6,12 @@
 						<li><a href = "user.php"><i class = "glyphicon glyphicon-cog"></i> User</a></li>
 					</ul>
 				</li>
-				<li><li><a href = "patient.php"><i class = "glyphicon glyphicon-user"></i> Patient</a></li></li>
+				<li><a href = ""><i class = "glyphicon glyphicon-user"></i> Manage Patient</a>
+					<ul>
+						<li><a href = "patient.php"><i class = "glyphicon glyphicon-user"></i> Patient Record</a></li>
+						<li><a href = "appointment.php"><i class = "glyphicon glyphicon-cog"></i> appointment</a></li>
+					</ul>
+				</li>
 				<li><a href = ""><i class = "glyphicon glyphicon-folder-close"></i> Sections</a>
 					<ul>
 						<li><a href = "fecalysis.php"><i class = "glyphicon glyphicon-folder-open"></i> Fecalysis</a></li>

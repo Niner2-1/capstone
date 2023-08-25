@@ -17,7 +17,7 @@
 	<div class = "navbar navbar-default navbar-fixed-top">
 		<img src = "../images/logo.png" style = "float:left;" height = "55px" /><label class = "navbar-brand">LAFUENTE MEDICAL CLINIC Patient Record Management Information System - Padre Burgos</label>
 			<?php
-				$conn = new mysqli("localhost", "root", "", "hcpms") or die(mysqli_error());
+				$conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
 				$q = $conn->query("SELECT * FROM `admin` WHERE `admin_id` = '$_SESSION[admin_id]'") or die(mysqli_error());
 				$f = $q->fetch_array();
 			?>
@@ -54,7 +54,7 @@
 			</div>
 			<div class = "panel-body">
             <?php
-				$conn = new mysqli("localhost", "root", "", "draft1") or die(mysqli_error());
+				$conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
                 $q = $conn->query("SELECT * FROM `supplier` WHERE `supplier_id` = '$_GET[id]'") or die(mysqli_error());
                 $f = $q->fetch_array();
 			?>

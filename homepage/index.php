@@ -16,6 +16,7 @@ include('../login/reg.php');
 
     <link rel="stylesheet" href="homepage.css" />
     <!-- Unicons -->
+    <link href="C:/xampp/htdocs/new/finaldraft/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -26,7 +27,7 @@ include('../login/reg.php');
     <header class="header">
       <nav class="nav">
         
-        <a href="index.php" class="nav_logo"><img class="logo"  src="../images/logo.png" alt="logo"> Lafuente Medical Clinic</a>
+        <a href="index.php" class="nav_logo"><img class="logo"  src="../image/logo.png" alt="logo"> Lafuente Medical Clinic</a>
 
         <ul class="nav_items">
           <li class="nav_item">

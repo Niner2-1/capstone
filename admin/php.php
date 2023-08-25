@@ -1,6 +1,6 @@
 <?php
 
-$pdo = require 'C:\xampp\htdocs\capstone\database\connV2.php';
+$pdo = require '../database/connV2.php';
 
 if (isset($_POST['additemBtn'])) {
 	$supplier_id = $_POST['supplier_id'];
@@ -92,7 +92,7 @@ if (isset($_POST['addSupplierBtn'])) {
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['supplier_id'])) {
-        $conn = new mysqli("localhost", "root", "", "draft1") or die(mysqli_error());
+        $conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
 
         $supplierId = $_POST['supplier_id'];
         

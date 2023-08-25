@@ -39,28 +39,9 @@
 			</ul>
 	</div>
 	<div id = "sidebar">
-			<ul id = "menu" class = "nav menu">
-				<li><a href = "home.php"><i class = "glyphicon glyphicon-home"></i> Dashboard</a></li>
-				<li><a href = ""><i class = "glyphicon glyphicon-cog"></i> Accounts</a>
-					<ul>
-						<li><a href = "admin.php"><i class = "glyphicon glyphicon-cog"></i> Administrator</a></li>
-						<li><a href = "user.php"><i class = "glyphicon glyphicon-cog"></i> User</a></li>
-					</ul>
-				</li>
-				<li><li><a href = "patient.php"><i class = "glyphicon glyphicon-user"></i> Patient</a></li></li>
-				<li><a href = ""><i class = "glyphicon glyphicon-folder-close"></i> Sections</a>
-					<ul>
-						<li><a href = "fecalysis.php"><i class = "glyphicon glyphicon-folder-open"></i> Fecalysis</a></li>
-						<li><a href = "maternity.php"><i class = "glyphicon glyphicon-folder-open"></i> Maternity</a></li>
-						<li><a href = "hematology.php"><i class = "glyphicon glyphicon-folder-open"></i> Hematology</a></li>
-						<li><a href = "dental.php"><i class = "glyphicon glyphicon-folder-open"></i> Dental</a></li>
-						<li><a href = "xray.php"><i class = "glyphicon glyphicon-folder-open"></i> Xray</a></li>
-						<li><a href = "rehabilitation.php"><i class = "glyphicon glyphicon-folder-open"></i> Rehabilitation</a></li>
-						<li><a href = "sputum.php"><i class = "glyphicon glyphicon-folder-open"></i> Sputum</a></li>
-						<li><a href = "urinalysis.php"><i class = "glyphicon glyphicon-folder-open"></i> Urinalysis</a></li>
-					</ul>
-				</li>
-			</ul>
+			<?php
+			include "sidemenu.php";
+			?>
 	</div>
 	<div id = "content">
 		<br />
@@ -69,7 +50,7 @@
 		<div class = "panel panel-success">	
 		<?php
 			$conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
-			$query = $conn->query("SELECT * FROM `user` WHERE `user_id` = '$_GET[id]'") or die(mysqli_error());
+			$query = $conn->query("SELECT * FROM `users` WHERE `user_id` = '$_GET[id]'") or die(mysqli_error());
 			$fetch = $query->fetch_array();
 		?>
 			<div class = "panel-heading">
@@ -102,21 +83,7 @@
 							<label for = "lastname">Lastname: </label>
 							<input class = "form-control" type = "text" value = "<?php echo $fetch['lastname']?>" name = "lastname" required = "required">
 						</div>
-						<div class = "form-group">
-							<label for = "section">Section: </label>
-							<select name = "section" class = "form-control" required = "required">
-								<option value = "">--Please select an option--</option>
-								<option value = "Dental">Dental</option>
-								<option value = "Fecalysis">Fecalysis</option>
-								<option value = "Hematology">Hematology</option>
-								<option value = "Prenatal">Prenatal</option>
-								<option value = "Xray">Xray</option>
-								<option value = "Rehabilitation">Rehabilitation</option>
-								<option value = "Sputum">Sputum</option>
-								<option value = "Urinalysis">Urinalysis</option>
-								<option value = "Maternity">Maternity</option>
-							</select>
-						</div>
+						
 							<button class = "btn btn-warning" name = "edit_user" ><span class = "glyphicon glyphicon-edit"></span> SAVE</button>
 							<br />
 					</div>	

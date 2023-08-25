@@ -16,7 +16,7 @@
 	<div class = "navbar navbar-default navbar-fixed-top">
 		<img src = "../images/logo.png" style = "float:left;" height = "55px" /><label class = "navbar-brand">LAFUENTE MEDICAL CLINIC Patient Record Management Information System - Padre Burgos</label>
 			<?php
-				$conn = new mysqli("localhost", "root", "", "hcpms") or die(mysqli_error());
+				$conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
 				$q = $conn->query("SELECT * FROM `admin` WHERE `admin_id` = '$_SESSION[admin_id]'") or die(mysqli_error());
 				$f = $q->fetch_array();
 			?>
@@ -67,7 +67,7 @@
 					</thead>
 					<tbody>
 					<?php
-						$conn = new mysqli("localhost", "root", "", "draft1") or die(mysqli_error());
+						$conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
 						//$query = $conn->query("SELECT * FROM `supplier` ORDER BY `supplier_id` DESC") or die(mysqli_error());
 						$query = $conn->query("SELECT * FROM product INNER JOIN supplier ON product.supplier_id = supplier.supplier_id WHERE product.product_id = product_id ORDER BY `product_id` DESC") or die(mysqli_error());
 						while($fetch = $query->fetch_array()){
