@@ -7,7 +7,7 @@
 ?>
 <html lang = "en">
 	<head>	
-		<title>Health Center Patient Record Management System</title>
+		<title>LAFUENTE MEDICAL CLINIC Patient Record Management Information System</title>
 		<meta charset = "UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel = "shortcut icon" href = "../images/logo.png" />
@@ -39,7 +39,7 @@
 	<div class = "well">
 		<div class = "panel panel-warning">
 			<div class = "panel-heading">
-				<center><label>URINALYSIS</label></center>
+				<center><label>PATIENT DETAILS</label></center>
 			</div>
 		</div>
 		<div class = "panel panel-success">	

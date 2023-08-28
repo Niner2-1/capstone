@@ -3,7 +3,7 @@
 				<li><a href = ""><i class = "glyphicon glyphicon-cog"></i> Accounts</a>
 					<ul>
 						<li><a href = "admin.php"><i class = "glyphicon glyphicon-cog"></i> Administrator</a></li>
-						<li><a href = "user.php"><i class = "glyphicon glyphicon-cog"></i> User</a></li>
+						<li><a href = "user.php"><i class = "glyphicon glyphicon-cog"></i> Doctor</a></li>
 					</ul>
 				</li>
 				<li><a href = ""><i class = "glyphicon glyphicon-user"></i> Manage Patient</a>
@@ -12,7 +12,7 @@
 						<li><a href = "appointment.php"><i class = "glyphicon glyphicon-cog"></i> appointment</a></li>
 					</ul>
 				</li>
-				<li><a href = ""><i class = "glyphicon glyphicon-folder-close"></i> Sections</a>
+				<!--<li><a href = ""><i class = "glyphicon glyphicon-folder-close"></i> Sections</a>
 					<ul>
 						<li><a href = "fecalysis.php"><i class = "glyphicon glyphicon-folder-open"></i> Fecalysis</a></li>
 						<li><a href = "maternity.php"><i class = "glyphicon glyphicon-folder-open"></i> Maternity</a></li>
@@ -23,7 +23,7 @@
 						<li><a href = "sputum.php"><i class = "glyphicon glyphicon-folder-open"></i> Sputum</a></li>
 						<li><a href = "urinalysis.php"><i class = "glyphicon glyphicon-folder-open"></i> Urinalysis</a></li>
 					</ul>
-				</li>
+				</li>-->
 				<li><a href = ""><i class = "glyphicon glyphicon-cog"></i> Manage Inventory</a>
 					<ul>
 						<li><a href = "stock.php"><i class = "glyphicon glyphicon-cog"></i> Stock</a></li>

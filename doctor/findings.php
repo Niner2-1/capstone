@@ -14,6 +14,14 @@
 		<link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css" />
 		<link rel = "stylesheet" type = "text/css" href = "../css/jquery.dataTables.css" />
 		<link rel = "stylesheet" type = "text/css" href = "../css/customize.css" />
+		<style>
+			#textboxid
+				{
+					height:100px;
+					width: 500px;
+					font-size:14pt;
+				}
+		</style>
 	</head>
 	<body>
 	<div class = "navbar navbar-default navbar-fixed-top">
@@ -49,9 +57,7 @@
 			<form method = "POST" enctype = "multipart/form-data">
 			<?php
 				$q = $conn->query("SELECT * FROM `patient_record` JOIN `complaints` ON complaints.itr_no = patient_record.itr_no WHERE patient_record.itr_no = '$_GET[itr_no]'") or die(mysqli_error());
-				$q1 = $conn->query("SELECT * FROM `complaints` WHERE `com_id` = '$_GET[comp_id]' && `itr_no` = '$_GET[itr_no]'") or die(mysqli_error());
 				
-				$f1 = $q1->fetch_array();
 				$f = $q->fetch_array();
 			?>
 			<div class = "panel-body">
@@ -116,75 +122,17 @@
 					<input type = "text" value = "<?php echo date("m/d/Y", strtotime("+8 HOURS"))?>" name = "date_of_request" class = "form-control" readonly = "readonly"/>
 				</div>
 				<br />
-                <div class = "form-inline">
+				<div class = "form-inline">
 					<h4 style = "color:#3C763D;"><b>Sample Lab Test</b></h4>
 					<br />
 
-                    <input type="checkbox" id="CBC" name="CBC" value="YES">
-                    <label for="CBC"> CBC With Platelet Count / CBC</label><br>
-                    <input type="checkbox" id="BloodTyping" name="BloodTyping" value="YES">
-                    <label for="BloodTyping"> Blood Typing</label><br>
-                    <input type="checkbox" id="ClottingTime" name="ClottingTime" value="YES">
-                    <label for="ClottingTime"> Clotting Time</label><br>
-                    <input type="checkbox" id="BLEEDINGTIME" name="BLEEDINGTIME" value="YES">
-                    <label for="BLEEDINGTIME"> BLEEDING TIME</label><br>
-                    <input type="checkbox" id="HBA1C" name="HBA1C" value="YES">
-                    <label for="HBA1C"> HBA1C</label><br>
-                    <input type="checkbox" id="FBS/RBS" name="FBSandRBS" value="YES">
-                    <label for="FBS/RBS"> FBS/RBS</label><br>
-                    <input type="checkbox" id="LIPIDPROFIlE" name="LIPIDPROFIlE" value="YES">
-                    <label for="LIPIDPROFIlE"> LIPID PROFIlE</label><br>
-                    <input type="checkbox" id="TOTALCHOLESTEROL" name="TOTALCHOLESTEROL" value="YES">
-                    <label for="TOTALCHOLESTEROL"> TOTAL CHOLESTEROL</label><br>
-                    <input type="checkbox" id="TRIGLYCERIDES" name="TRIGLYCERIDES" value="YES">
-                    <label for="TRIGLYCERIDES"> TRIGLYCERIDES</label><br>
-                    <input type="checkbox" id="BLOODUREANITROGEN" name="BLOODUREANITROGEN" value="YES">
-                    <label for="BLOODUREANITROGEN"> BLOOD UREA NITROGEN</label><br>
-                    <input type="checkbox" id="CREATININE" name="CREATININE" value="YES">
-                    <label for="CREATININE"> CREATININE</label><br>
-                    <input type="checkbox" id="BLOODURICACID" name="BLOODURICACID" value="YES">
-                    <label for="BLOODURICACID"> BLOOD URIC ACID</label><br>
-                    <input type="checkbox" id="SGPT/ALT" name="SGPTandALT" value="YES">
-                    <label for="SGPT/ALT"> SGPT / ALT</label><br>
-                    <input type="checkbox" id="SGOT/AST" name="SGOTandAST" value="YES">
-                    <label for="SGOT/AST"> SGOT / AST</label><br>
-                    <input type="checkbox" id="ALBUMIN" name="ALBUMIN" value="YES">
-                    <label for="ALBUMIN"> ALBUMIN</label><br>
-                    <input type="checkbox" id="SODIUM" name="SODIUM" value="YES">
-                    <label for="SODIUM"> SODIUM</label><br>
-                    <input type="checkbox" id="POTASSIUM" name="POTASSIUM" value="YES">
-                    <label for="POTASSIUM"> POTASSIUM</label><br>
-                    <input type="checkbox" id="HBSAG" name="HBSAG" value="YES">
-                    <label for="HBSAG"> HBSAG</label><br>
-                    <input type="checkbox" id="VDRL" name="VDRL" value="YES">
-                    <label for="VDRL"> VDRL</label><br>
-                    <input type="checkbox" id="URINALYSIS" name="URINALYSIS" value="YES">
-                    <label for="URINALYSIS"> URINALYSIS</label><br>
-                    <input type="checkbox" id="PREGNANCYTEST" name="PREGNANCYTEST" value="YES">
-                    <label for="PREGNANCYTEST"> PREGNANCY TEST</label><br>
-                    <input type="checkbox" id="FECALYSIS" name="FECALYSIS" value="YES">
-                    <label for="FECALYSIS"> FECALYSIS</label><br>
-
-
+                    <label for="URINALYSIS"> URINALYSIS RESULTS</label><br>
+                    <textarea  id="textboxid" name="URINALYSIS"></textarea>
+					<br />
+					<br />
+					<br />
+					<br />
+					<label for="URINALYSIS">FINDINGS</label><br>
+                    <textarea  id="textboxid" name="GENERAL"></textarea>
+                    
 				</div>
-                <br>
-                <br>
-				<div class = "form-inline">
-					<button class = "btn btn-primary" name = "save_test" ><span class = "glyphicon glyphicon-save"></span> SAVE</button> 
-
-				<a style = "float:right; margin-top:-4px;" href = "findings.php?itr_no=<?php echo $_GET['itr_no']?>" class = "btn btn-info"><span class = "glyphicon glyphicon-hand-right"></span> findings</a>
-
-				</div>
-			
-			</div>
-			<?php require 'add_query.php'?>
-			</form>
-		</div>
-		 
-	</div>
-	<div id = "footer">
-		<label class = "footer-title"></label>
-	</div>
-	</body>
-		<?php require "script.php" ?>
-</html>

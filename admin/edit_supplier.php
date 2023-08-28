@@ -5,7 +5,7 @@
 ?>
 <html lang = "eng">
 	<head>
-		<title>Health Center Patient Record Management System</title>
+		<title>LAFUENTE MEDICAL CLINIC Patient Record Management Information System</title>
 		<meta charset = "utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel = "shortcut icon" href = "../images/logo.png" />
@@ -49,7 +49,7 @@
 		<br />
 		<div class = "panel panel-success">	
 			<div class = "panel-heading">
-				<label>PATIENT INFORMATION / EDIT</label>
+				<label>Supplier INFORMATION / EDIT</label>
 				<a style = "float:right; margin-top:-4px;" href = "supplier.php" class = "btn btn-info"><span class = "glyphicon glyphicon-hand-right"></span> BACK</a>
 			</div>
 			<div class = "panel-body">

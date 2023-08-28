@@ -7,7 +7,7 @@
 ?>
 <html lang = "en">
 	<head>	
-		<title>Health Center Patient Record Management System</title>
+		<title>LAFUENTE MEDICAL CLINIC Patient Record Management Information System</title>
 		<meta charset = "UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel = "shortcut icon" href = "../images/logo.png" />
@@ -39,12 +39,12 @@
 	<div class = "well">
 		<div class = "panel panel-warning">
 			<div class = "panel-heading">
-				<center><label>URINALYSIS</label></center>
+				<center><label>MEDICAL REQUEST</label></center>
 			</div>
 		</div>	
 		<div class = "panel panel-success">
 			<div class = "panel-heading">
-				<label>URINALYSIS REQUEST</label>
+				<label> REQUEST</label>
 				<a style = "float:right; margin-top:-4px;" href = "view_urinalysis.php?itr_no=<?php echo $_GET['itr_no']?>" class = "btn btn-info"><span class = "glyphicon glyphicon-hand-right"></span> BACK</a>
 			</div>
 			<div class = "panel-body">

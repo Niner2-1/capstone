@@ -212,11 +212,11 @@ $all_product = $conn->query($sql);
 
         <ul class="nav_items">
           <li class="nav_item">
-            <a href="index.php" class="nav_link">Home</a>
-            <a href="page2.html" class="nav_link">Product</a>
+            <a href="patients.php" class="nav_link">Home</a>
             <a href="#sample" class="nav_link">Services</a>
             <a href="#" class="nav_link">Contact</a>
-            <a href="../admin/api.php" class="nav_link">appoinment</a>
+            <a href="../patients/appointment.php" class="nav_link">appoinment</a>
+
           </li>
         </ul>
         <a href="../patients/patients.php" class="nav_link"><button class="button">LOG OUT</button></a>

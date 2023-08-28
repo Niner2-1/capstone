@@ -14,7 +14,6 @@
 
     <link rel="stylesheet" href="../patients/patients.css" />
     <!-- Unicons -->
-    <link href="C:/xampp/htdocs/new/finaldraft/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,11 +32,11 @@
             <a href="page2.html" class="nav_link">Product</a>
             <a href="#sample" class="nav_link">Services</a>
             <a href="#" class="nav_link">Contact</a>
-            <a href="../admin/api.php" class="nav_link">appoinment</a>
+            <a href="../patients/appointment.php" class="nav_link">appoinment</a>
           </li>
         </ul>
         <a href="../patients/pharmacy.php" class="nav_link"><button class="button">Pharmacy <i class="fa fa-shopping-cart"></i></button></a>
-        <a href="../homepage/index.php" class="nav_link"><button class="button">LOG OUT</button></a>
+        <!--<a href="../homepage/index.php" class="nav_link"><button class="button">LOG OUT</button></a>-->
 
       </nav>
     </header>

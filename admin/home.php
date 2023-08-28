@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	require_once 'logincheck.php';
-
+	
 	$username = "root";
 	$password = "";
 	$database = "capstonedbdraft";
@@ -14,25 +14,7 @@
 	  die("ERROR: Could not connect. " . $e->getMessage());
 	}
 
-
-    $date = date("Y", strtotime("+ 8 HOURS"));
-	$conn = new mysqli("localhost", "root", "", "hcpms") or die(mysqli_error());
-	$qfecalysis = $conn->query("SELECT COUNT(*) as total FROM `fecalisys` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$ffecalysis = $qfecalysis->fetch_array();
-	$qmaternity = $conn->query("SELECT COUNT(*) as total FROM `birthing` `prenatal` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$fmaternity = $qmaternity->fetch_array();
-	$qhematology = $conn->query("SELECT COUNT(*) as total FROM `hematology` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$fhematology = $qhematology->fetch_array();
-	$qdental = $conn->query("SELECT COUNT(*) as total FROM `dental` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$fdental = $qdental->fetch_array();
-	$qxray = $conn->query("SELECT COUNT(*) as total FROM `radiological` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$fxray = $qxray->fetch_array();
-	$qrehab = $conn->query("SELECT COUNT(*) as total FROM `rehabilitation` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$frehab = $qrehab->fetch_array();
-	$qsputum = $conn->query("SELECT COUNT(*) as total FROM `sputum` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$fsputum = $qsputum->fetch_array();
-	$qurinalysis = $conn->query("SELECT COUNT(*) as total FROM `urinalysis` WHERE `year` = '$date' GROUP BY `itr_no`") or die(mysqli_error());
-	$furinalysis = $qurinalysis->fetch_array();
+	$conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
 ?>
 <html lang = "eng">
 	<head>
@@ -40,13 +22,12 @@
 		<meta charset = "utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel = "shortcut icon" href = "../images/logo.png" />
-		<link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css" />
+		<link rel = "stylesheet" type = "text/css" href = "../css/bootstrap.css" />      
 		<link rel = "stylesheet" type = "text/css" href = "../css/jquery.dataTables.css" />
 		<link rel = "stylesheet" type = "text/css" href = "../css/customize.css" />
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 		<?php //require 'script.php'?>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
         <script src = "../js/bootstrap.js"></script>
 <script src = "../js/jquery.min.js"></script>
 <script src = "../js/dropdown.js"></script>
@@ -58,259 +39,14 @@
 		$('#table').DataTable();
 		$('#table1').DataTable();
 	});
-
-
-
-
-
-        </script>
-		<script src = "../js/jquery.canvasjs.min.js"></script>
-		<script type="text/javascript"> 
-			window.onload = function() { 
-				$("#chartContainer").CanvasJSChart({ 
-					title: { 
-						text: "Total Patient Population <?php echo $date?>",
-						fontSize: 24
-					}, 
-					axisY: { 
-						title: "asda" 
-					}, 
-					legend :{ 
-						verticalAlign: "center", 
-						horizontalAlign: "left" 
-					}, 
-					data: [ 
-					{ 
-						type: "pie", 
-						showInLegend: true, 
-						toolTipContent: "{label} <br/> {y}", 
-						indexLabel: "{y}", 
-						dataPoints: [ 
-							{ label: "Fecalysis",  y: 
-								<?php 
-									if($ffecalysis == ""){
-											echo 0;
-									}else{
-										echo $ffecalysis['total'];
-									}
-								?>, legendText: "Fecalysis"}, 
-							{ label: "Maternity",  y: 
-								<?php 
-									if($fmaternity == ""){
-										echo 0;
-									}else{
-										echo $fmaternity['total'];
-									}	
-								?>, legendText: "Maternity"},
-							{ label: "Hematology",  y: 
-								<?php 
-									if($fhematology == ""){
-										echo 0;
-									}else{
-										echo $fhematology['total'];
-									}	
-								?>, legendText: "Hematology"},
-							{ label: "Dental",  y: 
-								<?php 
-									if($fdental == ""){
-										echo 0;
-									}else{
-									echo $fdental['total'];
-									}
-								?>, legendText: "Dental"},
-							{ label: "Xray",  y: 
-								<?php 
-									if($fxray == ""){
-										echo 0;
-									}else{
-										echo $fxray['total'];
-									}	
-								?>, legendText: "Xray"},
-							{ label: "Rehabilitation",  y: 
-								<?php
-									if($frehab == ""){
-										echo 0;
-									}else{
-										echo $frehab['total'];
-									}	
-								?>, legendText: "Rehabilitation"},
-							{ label: "Sputum",  y: 
-								<?php
-									if($fsputum == ""){
-										echo 0;
-									}else{
-										echo $fsputum['total'];
-									}	
-								?>, legendText: "Sputum"},
-							{ label: "Urinalysis",  y: 
-								<?php 
-									if($furinalysis == ""){
-										echo 0;
-									}else{
-										echo $furinalysis['total'];
-									}	
-								?>, legendText: "Urinalysis"}
-						] 
-					} 
-					] 
-				}); 
-			} 
-		</script>
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>  
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ["Element", "Record", { role: "style" } ],
-        ["Barangay 1", 8, "#b87333"],
-        ["Barangay 2", 10, "silver"],
-        ["Barangay 3", 19, "gold"],
-        ["Barangay 4", 21, "color: #e5e4e2"],
-        ["Barangay 5", 7, "red"]
-      ]);
-
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
-
-      var options = {
-        title: "Record of Patients per Barangay",
-        width: 1000,
-        height: 400,
-        bar: {groupWidth: "95%"},
-        legend: { position: "none" },
-      };
-      var chart = new google.visualization.BarChart(document.getElementById("chartContainer2"));
-      chart.draw(view, options);
-  }
+	
 </script>
-
-
-<script>google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBasic);
-
-function drawBasic() {
-
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
-      data.addColumn('number', 'Sales');
-
-      data.addRows([
-        [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-        [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-        [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-        [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-        [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-        [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-        [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-        [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-        [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-        [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-        [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-        [66, 70], [67, 72], [68, 75], [69, 80]
-      ]);
-
-      var options = {
-        hAxis: {
-          title: 'Time'
-        },
-        vAxis: {
-          title: 'Popularity'
-        }
-      };
-
-      var chart = new google.visualization.LineChart(document.getElementById('chartContainer3'));
-
-      chart.draw(data, options);
-    }</script>
-
-
-
-
-
-
-
-<script>
-      google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawMultSeries);
-
-function drawMultSeries() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('timeofday', 'Time of Day');
-      data.addColumn('number', 'Motivation Level');
-      data.addColumn('number', 'Energy Level');
-
-      data.addRows([
-        [{v: [8, 0, 0], f: 'Jan'}, 1, .25],
-        [{v: [9, 0, 0], f: 'Feb'}, 2, .5],
-        [{v: [10, 0, 0], f:'march'}, 3, 1],
-        [{v: [11, 0, 0], f: 'april'}, 4, 2.25],
-        [{v: [12, 0, 0], f: '12 pm'}, 5, 2.25],
-        [{v: [13, 0, 0], f: '1 pm'}, 6, 8],
-        [{v: [14, 0, 0], f: '2 pm'}, 7, 4],
-        [{v: [15, 0, 0], f: '3 pm'}, 8, 5.25],
-        [{v: [16, 0, 0], f: '4 pm'}, 9, 7.5],
-        [{v: [17, 0, 0], f: '5 pm'}, 10, 10],
-      ]);
-
-      var options = {
-        title: 'Motivation and Energy Level Throughout the Day',
-        hAxis: {
-          title: 'Time of Day',
-          format: 'h:mm a',
-          viewWindow: {
-            min: [7, 30, 0],
-            max: [17, 30, 0]
-          }
-        },
-        vAxis: {
-          title: 'Rating (scale of 1-10)'
-        }
-      };
-
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('chartContainer4'));
-
-      chart.draw(data, options);
-    }
-      
-    </script>
-
-
-
-
-
-
-
-        </head>
+		
+	</head>
 <body>
 	<div class = "navbar navbar-default navbar-fixed-top">
 		<img src = "../images/logo.png" style = "float:left;" height = "55px" /><label class = "navbar-brand">LAFUENTE MEDICAL CLINIC Patient Record Management Information System - Padre Burgos</label>
 		<?php 
-    $conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
-
 			$q = $conn->query("SELECT * FROM `admin` WHERE `admin_id` = $_SESSION[admin_id]") or die(mysqli_error());
 			$f = $q->fetch_array();
 		?>
@@ -335,23 +71,20 @@ function drawMultSeries() {
 			<?php include "sidemenu.php"; ?>
 	</div>
 
-
-	
 	<?php 
 // Attempt select query execution
 try{
-  $sql = "SELECT * FROM capstonedbdraft.barchart";   
+  $sql = "SELECT * FROM capstonedbdraft.sales";   
   $result = $pdo->query($sql);
   if($result->rowCount() > 0) {
-    $labels = array();
-    $revenue = array();
-    $cost = array();
-    $profit = array();
+    $sales = array();
+    $create_at = array();
     while($row = $result->fetch()) {
-      $labels[] = $row["labels"];
-      $revenue[] = $row["revenue"];
-      $cost[] = $row["cost"];
-      $profit[] = $row["profit"];
+      
+      $sales[] = $row["sales"];
+      $create_at[] = $row["create_at"];
+
+
     }
   unset($result);
   } else {
@@ -361,108 +94,119 @@ try{
   die("ERROR: Could not able to execute $sql. " . $e->getMessage());
 }
 
-$sql = "SELECT * FROM capstonedbdraft.barchart";   
-  $result = $pdo->query($sql);
-  if($result->rowCount() > 0) {
-    $labels = array();
-    $revenue = array();
-    $cost = array();
-    $profit = array();
-    while($row = $result->fetch()) {
-      $labels[] = $row["labels"];
-      $revenue[] = $row["revenue"];
-      $cost[] = $row["cost"];
-      $profit[] = $row["profit"];
+
+try{
+    $sql2 = "SELECT * FROM capstonedbdraft.sample_table ";   
+    $result2 = $pdo->query($sql2);
+    if($result2->rowCount() > 0) {
+        $Cabuyao_Norte = array();
+        $Cabuyao_Sur = array();
+        $Danlagan = array();
+      while($row = $result2->fetch()) {
+        $Cabuyao_Norte[] = $row["Cabuyao_Norte"];
+        $Cabuyao_Sur[] = $row["Cabuyao_Sur"];
+        $Danlagan[] = $row["Danlagan"];
+
+  
+  
+      }
+    unset($result2);
+    } else {
+      echo "No records matching your query were found.";
     }
-  unset($result);
-  } else {
-    echo "No records matching your query were found.";
+  } catch(PDOException $e){
+    die("ERROR: Could not able to execute $sql. " . $e->getMessage());
   }
-  catch(PDOException $e){
-  die("ERROR: Could not able to execute $sql. " . $e->getMessage());
-}
  
 // Close connection
 unset($pdo);
+//print_r($create_at)
 ?>
-    
-	<div id = "content">
-		<br />
-		<br />
-		<br />
-		<div class = "well">
-			 
-		    <div id="chartContainer" style="width: 100%; height: 400px"></div>
-			
-		</div>
-        <br>
-        <div class = "well">
-			 
-		    <div id="chartContainer2" style="width: 100%; height: 400px"></div>
-			
-		</div>
-		<br>
-        <div class = "well">
-			 
-		    <div id="chartContainer3" style="width: 100%; height: 400px"></div>
-			
-		</div>
-		<br>
-        <div class = "well">
-			 
-		    <div id="chartContainer4" style="width: 100%; height: 400px"></div>
-			
-		</div>
 
-		<div class="well" style="width: 50%">
+
+
+
+
+
+
+<div id="content">
+    <br />
+    <br />
+
+    <br />
+    <div class="well" style="width: 50%">
+        <input type="date" onchange="startDateFilter(this)">
+        <input type="date" onchange="endDateFilter(this)">
         <div id="chartContainer" style="width: 100%; height: 400px">
             <canvas id="myChart"></canvas>
         </div>
-		<div class="well" >
-		<div id="chartContainer1" style="width: 100%; height: 400px">
-            <canvas id="myChart1"></canvas>
+        <div class="buttonBox">
+          <button onclick="showData(5)">show 5 data data</button>
+          <button onclick="showData(10)">show 10 data data</button>
+          <button onclick="resetData()">reset</button>
         </div>
-		</div>
     </div>
-	</div>
+    <div class="well" style="width: 50%">
+        <div id="chartContainer2" style="width: 100%; height: 400px">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+    <div class="well" style="width: 50%">
+        <div id="chartContainer3" style="width: 100%; height: 400px">
+            <canvas id="myChart3"></canvas>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 	<script>
 
-//setup block
-const labels = <?php echo json_encode($labels);  ?>;
-const revenue = <?php echo json_encode($revenue);  ?>;
-const cost = <?php echo json_encode($cost);  ?>;
-const profit = <?php echo json_encode($profit);  ?>;
 
+
+
+
+ 
+
+
+
+
+
+
+//setup block
+
+const sales = <?php echo json_encode($sales);  ?>;
+const create_at = <?php echo json_encode($create_at);  ?>;
+//console.log(create_at)
+
+const dateChartJS = create_at.map((day, index) => {
+    let dayjs = new Date(day); 
+
+    return dayjs.setHours(0,0,0,0)
+})
+console.log(dateChartJS) 
+
+//setup
 const data = {
-labels: labels,
+labels: dateChartJS,
       datasets: [{
-            label: '# of revenue',
-            data: revenue,
+            label: '# of sales',
+            data: <?php echo json_encode($sales);  ?>,
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderColor: 'rgba(54, 162, 235, 1)',
-
-            borderWidth: 1
-
-          },
-          {
-            label: '# of cost',
-            data: cost,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-               
-            borderColor: 'rgba(255, 99, 132, 0.2)',
-            borderWidth: 1
-
-          },
-          {
-            label: '# of profit',
-            data: profit,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-
-            borderColor: 'rgba(75, 192, 192, 1)',
+            fill: false,
             borderWidth: 1
 
           }
@@ -471,11 +215,12 @@ labels: labels,
         ]
 
         };
+        
 
 
-        //config block for display 1
+        //config block
 		const config = {
-    type: 'bar',
+    type: 'line',
     data,
     options: {
         plugins: {
@@ -488,6 +233,14 @@ labels: labels,
             }
         },
         scales: {
+            x: {
+                min: '',
+                max: '',
+                type: 'time',
+                time: {
+                    unit: 'day'
+                }
+            },
             y: {
                 beginAtZero: true
             }
@@ -496,7 +249,7 @@ labels: labels,
 };
 
           
-//render Block for display 1
+//render Block
 
 const myChart = new Chart (
   document.getElementById('myChart'),
@@ -504,14 +257,57 @@ const myChart = new Chart (
 );
 
 
+function startDateFilter(date){
+    const startDate = new Date(date.value);
+    console.log(startDate.setHours(0,0,0,0));
+    myChart.config.options.scales.x.min = startDate.setHours(0,0,0,0);
+    myChart.update();
+}
 
-/////////////////////////////////////////////////////
+function endDateFilter(date){
+    const endDate = new Date(date.value);
+    console.log(endDate.setHours(0,0,0,0));
+    myChart.config.options.scales.x.max = endDate.setHours(0,0,0,0);
+    myChart.update();
+}
+
+function showData(num){
+   const salesSliced = sales.slice(0, num);
+   const create_atSliced = create_at.slice(0, num);
+   myChart.data.datasets[0].data = salesSliced;
+   myChart.data.labels = create_atSliced;
+   myChart.update();
+};
+
+function resetData(num){    
+   myChart.data.datasets[0].data = sales;
+   myChart.data.labels = create_at;
+   myChart.update();
+};
 
 
-//config block for display 2
-const config1 = {
+/* 
+// Setup block for second set of data
+const labels1 = ['a', 'b', 'c'];
+const data2 = {
+    labels: labels1,
+    datasets: [{
+        label: '# of sales',
+        data: sales,
+        backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',                
+                'rgba(75, 192, 192, 0.2)',
+            ],
+        borderColor: 'rgb(60, 60, 60)',
+        borderWidth: 1
+    }]
+};
+
+// Config block for second chart
+const config2 = {
     type: 'bar',
-    data,
+    data: data2,
     options: {
         plugins: {
             title: {
@@ -530,34 +326,196 @@ const config1 = {
     }
 };
 
+// Render second chart
+const myChart1 = new Chart(
+    document.getElementById('myChart1'),
+    config2
+);
+
+const Cabuyao_Norte = <?php echo json_encode($Cabuyao_Norte);  ?>;
+const Cabuyao_Sur = <?php echo json_encode($Cabuyao_Sur);  ?>;
+const Danlagan = <?php echo json_encode($Danlagan);  ?>;
+*/
 
 
-//render Block for display 2
+const data2 = {
+    labels: [
+    'Cabuyao Norte',
+    'Cabuyao Sur',
+    'Danlagan',
+    'Duhat',
+    'Hinguiwin',
+    'Kinagunan Ibaba',
+    'Kinagunan Ilaya',
+    'Lipata',
+    'Marao',
+    'Marquez',
+    'Burgos (Pob.)',
+    'Campo (Pob.)',
+    'Basiao (Pob.)',
+    'Punta (Pob.)',
+    'Rizal',
+    'San Isidro',
+    'San Vicente',
+    'Sipa',
+    'Tulay Buhangin',
+    'Villapaz',
+    'Walay',
+    'Yawe'
+  ],
+  datasets: [
+    {
+      label: 'Patient per Baranggay in Padre Burgos',
+      data: [15, 8, 32, 98, 49, 97, 31, 74, 38, 89, 61, 68, 40, 58, 5, 3, 12, 77, 91, 17, 91, 10],
+      backgroundColor: 'rgba(74, 245, 0, 1)',
+      hoverOffset: 4
+    },
+    {
+      label: 'Patient per Baranggay in Padre Burgos last year',
+      data: [57, 61, 55, 29, 32, 44, 13, 98, 92, 64, 91, 32, 1, 15, 73, 56, 98, 99, 40, 80, 42, 2],
+      backgroundColor: 'rgb(255, 99, 2)',
+      hoverOffset: 4
+    },
+  ]
+};
 
-const myChart1 = new Chart (
-document.getElementById('myChart1'),
-config1
+const config2 = {
+  type: 'bar',
+  data: data2,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+};
+
+// Render second chart
+const myChart2 = new Chart(document.getElementById('myChart2'), config2);
+
+
+
+/*
+
+///////////////////////
+
+const labels = Utils.months({count: 7});
+const data2 = {
+  labels: labels,
+  datasets: [{
+    label: 'My First Dataset',
+    data: [65, 59, 80, 81, 56, 55, 40],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+  }]
+};
+
+const config2 = {
+  type: 'bar',
+  data: data2,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+// Render second chart
+const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
 );
 
 
 
 
+*/
 
+
+
+const data3 = {
+    labels: [
+    'CBC With Platelet Count / CBC',
+    'Clotting Time',
+    'BLEEDING TIME',
+    'HBA1C',
+    'FBS/RBS',
+    'LIPID PROFIlE',
+    'TOTAL CHOLESTEROL',
+    'TRIGLYCERIDES',
+    'BLOOD UREA NITROGEN',
+    'CREATININE',
+    'BLOOD URIC ACID',
+    'SGPT / ALT',
+    'SGOT / AST',
+    'Punta (Pob.)',
+    'ALBUMIN',
+    'SODIUM',
+    'POTASSIUM',
+    'HBSAG',
+    'VDRL',
+    'URINALYSIS',
+    'PREGNANCY',
+    'FECALYSIS'
+  ],
+  datasets: [
+    {
+      label: 'Total of lab Test request',
+      data: [46, 20, 42, 44, 21, 35, 25, 35, 34, 21, 20, 48, 25, 32, 22, 27, 32, 36, 37, 48, 45, 46],
+      backgroundColor: 'rgba(245, 0, 0, 1)',
+      hoverOffset: 4
+    }
+  ]
+};
+
+
+const config3 = {
+  type: 'bar',
+  data: data3,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+};
+
+// Render second chart
+const myChart3 = new Chart(document.getElementById('myChart3'), 
+config3);
 
 
 </script>
 
 
 
-
-
-
-
-	
-    <div id = "footer">
+	<div id = "footer">
 		<label class = "footer-title"></label>
 	</div>
 		
 </body>
 </html>
+
+
+
 

@@ -1,34 +1,49 @@
 <?php
-	if(ISSET($_POST['save_test'])){
+	if(isset($_POST['save_test'])){
 		$date_of_request = $_POST['date_of_request'];
-		$color = $_POST['color'];
-		$transparency = $_POST['transparency'];
-		$specific_gravity = $_POST['specific_gravity'];
-		$ph = $_POST['ph'];
-		$sugar = $_POST['sugar'];
-		$protein = $_POST['protein'];
-		$pregnacy_test = $_POST['pregnancy_test'];
-		$pus_cells = $_POST['pus_cells'];
-		$rbc = $_POST['rbc'];
-		$cast = $_POST['cast'];
-		$urates = $_POST['urates'];
-		$uric_acid = $_POST['uric_acid'];
-		$cal_ox = $_POST['cal_ox'];
-		$epith_cells = $_POST['epith_cells'];
-		$mucus_threads = $_POST['mucus_threads'];
-		$others = $_POST['others'];
-		$pathologist = $_POST['pathologist'];
-		$medical_technologist = $_POST['medical_technologist'];
-		$itr_no = $_POST['itr_no'];
-		$user_id = $_POST['user_id'];
-		$month = date("M", strtotime("+8 HOURS"));
-		$year = date("Y", strtotime("+8 HOURS"));
-		$conn = new mysqli("localhost", 'root', '', 'capstonedbdraft') or die(mysqli_error());
-		$conn->query("INSERT INTO `lab_test` VALUES('', '$date_of_request', '$color', '$transparency', '$specific_gravity', '$ph', '$sugar', '$protein', '$pregnacy_test', '$pus_cells', '$rbc', '$cast', '$urates', '$uric_acid', '$cal_ox', '$epith_cells', '$mucus_threads', '$others', '$pathologist', '$medical_technologist', '$itr_no', '$user_id', '$month', '$year')") or die(mysqli_error());
-		$conn->query("UPDATE `complaints` SET `status` = 'Done' WHERE `itr_no` = '$_GET[itr_no]' && `section` = 'Urinalysis' && `com_id` = '$_GET[comp_id]'") or die(mysqli_error());
-		echo("<script> location.replace('view_urinalysis_record.php');</script>");
+		$CBC = isset($_POST['CBC']) ? 1 : 0;
+		$BloodTyping = isset($_POST['BloodTyping']) ? 1 : 0;
+		$ClottingTime = isset($_POST['ClottingTime']) ? 1 : 0;
+		$BLEEDINGTIME = isset($_POST['BLEEDINGTIME']) ? 1 : 0;
+		$HBA1C = isset($_POST['HBA1C']) ? 1 : 0;
+		$FBSandRBS = isset($_POST['FBSandRBS']) ? 1 : 0;
+		$LIPIDPROFILE = isset($_POST['LIPIDPROFILE']) ? 1 : 0;
+		$TOTALCHOLESTEROL = isset($_POST['TOTALCHOLESTEROL']) ? 1 : 0;
+		$TRIGLYCERIDES = isset($_POST['TRIGLYCERIDES']) ? 1 : 0;
+		$BLOODUREANITROGEN = isset($_POST['BLOODUREANITROGEN']) ? 1 : 0;
+		$CREATININE = isset($_POST['CREATININE']) ? 1 : 0;
+		$BLOODURICACID = isset($_POST['BLOODURICACID']) ? 1 : 0;
+		$SGPTandALT = isset($_POST['SGPTandALT']) ? 1 : 0;
+		$SGOTandAST = isset($_POST['SGOTandAST']) ? 1 : 0;
+		$ALBUMIN = isset($_POST['ALBUMIN']) ? 1 : 0;
+		$SODIUM = isset($_POST['SODIUM']) ? 1 : 0;
+		$POTASSIUM = isset($_POST['POTASSIUM']) ? 1 : 0;
+		$HBSAG = isset($_POST['HBSAG']) ? 1 : 0;
+		$VDRL = isset($_POST['VDRL']) ? 1 : 0;
+		$URINALYSIS = isset($_POST['URINALYSIS']) ? 1 : 0;
+		$PREGNANCYTEST = isset($_POST['PREGNANCYTEST']) ? 1 : 0;
+		$FECALYSIS = isset($_POST['FECALYSIS']) ? 1 : 0;
+
+	
+		$conn = new mysqli("localhost", 'root', '', 'capstonedbdraft');
+	
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+	
+		$query = "INSERT INTO `lab_test` (date_of_request, CBC, BloodTyping, ClottingTime, BLEEDINGTIME, HBA1C, FBSandRBS, LIPIDPROFILE, TOTALCHOLESTEROL, TRIGLYCERIDES, BLOODUREANITROGEN, CREATININE, BLOODURICACID, SGPTandALT, SGOTandAST, ALBUMIN, SODIUM, POTASSIUM, HBSAG, VDRL, URINALYSIS, PREGNANCYTEST, FECALYSIS) 
+				  VALUES ('$date_of_request', '$CBC', '$BloodTyping', '$ClottingTime', '$BLEEDINGTIME', '$HBA1C', '$FBSandRBS', '$LIPIDPROFILE', '$TOTALCHOLESTEROL', '$TRIGLYCERIDES', '$BLOODUREANITROGEN', '$CREATININE', '$BLOODURICACID', '$SGPTandALT', '$SGOTandAST', '$ALBUMIN', '$SODIUM', '$POTASSIUM', '$HBSAG', '$VDRL', '$URINALYSIS', '$PREGNANCYTEST', '$FECALYSIS')";
+	
+		if ($conn->query($query) === true) {
+			$conn->query("UPDATE `complaints` SET `status` = 'Done' WHERE `itr_no` = '$_GET[itr_no]' && `com_id` = '$_GET[comp_id]'");
+			echo "<script>location.replace('view_urinalysis_record.php');</script>";
+		} else {
+			echo "Error: " . $conn->error;
+		}
+	
 		$conn->close();
 	}
+	
 	if(ISSET($_POST['save_d'])){
 		$tooth = $_POST['tooth'];
 		$date = date("Y-m-d", strtotime("+8 HOURS"));

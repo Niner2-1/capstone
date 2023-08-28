@@ -159,8 +159,26 @@ if (isset($_POST['edit_supplier'])) {
 
 
 
+//
 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['product_id'])) {
+        $conn = new mysqli("localhost", "root", "", "capstonedbdraft") or die(mysqli_error());
 
+        $productId = $_POST['product_id'];
+        
+        // Perform the deletion query here
+        $query = $conn->query("DELETE FROM `product` WHERE `product_id` = '$productId'") or die(mysqli_error());
+
+        if ($query) {
+            echo "success";
+        } else {
+            echo "error";
+        }
+
+        $conn->close();
+    }
+}
 
 
 

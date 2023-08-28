@@ -22,7 +22,7 @@
 	?>
 <html lang = "eng">
 	<head>
-		<title>Health Center Patient Record Management System</title>
+		<title>LAFUENTE MEDICAL CLINIC Patient Record Management Information System</title>
 		<meta charset = "utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel = "shortcut icon" href = "../images/logo.png" />
@@ -202,7 +202,9 @@
 							<td><?php echo $fetch['telephone']?></td>
 							<td><?php echo $fetch['email']?></td>
 
-							<td><center><a href = "complaints.php?id=<?php // echo $fetch['itr_no']?>&lastname=<?php //echo $fetch['lastname']?>" class = "btn btn-sm btn-info">Remove <span class = "badge"><?php //echo $f['total']?></span></a> 
+							<td><center>
+							<button class="btn btn-sm btn-info" onclick="removeItem(<?php echo $fetch['product_id']; ?>)">Remove <span class="badge"></span></button>
+
 							<a href = "edit_patient.php?id=<?php //echo $fetch['itr_no']?>&lastname=<?php //echo $fetch['lastname']?>" class = "btn btn-sm btn-warning"><span class = "glyphicon glyphicon-pencil"></span> Update</a></center></td>
 						</tr>
 					<?php
@@ -249,5 +251,34 @@
         window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
     });
 </script>	
+
+
+
+<script type="text/javascript">
+    function removeItem(product_id) {
+        if (confirm("Are you sure you want to remove this product?")) {
+            $.ajax({
+                url: "php.php",
+                type: "POST", // Change "POST1" to "POST"
+                data: { product_id: productId },
+                success: function(response) {
+                    if (response === "success") {
+                        // Reload the page to see updated data
+                        location.reload();
+                    } else {
+                        alert("An error occurred while deleting the product.");
+                    }
+                },
+                error: function() {
+                    alert("An error occurred while processing your request.");
+                }
+            });
+        }
+    }
+</script>
+
+
+
+
 </body>
 </html>
